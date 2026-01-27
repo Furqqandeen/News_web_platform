@@ -6,7 +6,7 @@
     <div class="col-md-8 blog-main">
         {% for article in articles %}
         <div class="blog-post">
-          <h3 > <a href="article/{{article.slug}}">  {{article.title}} </a> </h3>
+          <h3 > <a href="{% url 'single_article' article.slug %}">  {{article.title}} </a> </h3>
           <p class="blog-post-meta">{{article.updated_at}} by <a href="#">{{article.author}}</a></p>
           <p>{{article.short_description}}</p>
         </div>
