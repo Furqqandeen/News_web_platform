@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-n17ogc9(!_=l3ozwun#0&r__xwmel(kx^156xa$nsg0lgbddw0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
 ]
 
 ROOT_URLCONF = 'News_project.urls'
@@ -76,12 +78,16 @@ WSGI_APPLICATION = 'News_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+import os
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+ "default": dj_database_url.config(
+ default="sqlite:///" + str(BASE_DIR / "db.sqlite3"))
 }
+
+
+
 
 
 # Password validation
